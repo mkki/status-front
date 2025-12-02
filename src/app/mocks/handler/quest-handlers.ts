@@ -122,7 +122,7 @@ export const questHandlers = [
 
     const responseSubQuests: SubQuestResponseDTO[] = [];
 
-    requestData.subQuests.map((subQuest) => {
+    for (const subQuest of requestData.subQuests) {
       const filteredSubQuest = mockSubQuests.find(
         (mockSubQuest) => mockSubQuest.id === subQuest.id
       );
@@ -134,14 +134,14 @@ export const questHandlers = [
         );
       }
 
-      return responseSubQuests.push({
+      responseSubQuests.push({
         ...filteredSubQuest,
         desc: filteredSubQuest.desc.replace(
           /{actionUnitNum}/g,
           subQuest.actionUnitNum.toString()
         ),
       });
-    });
+    }
 
     const createdQuest: CreateQuestResponseDTO = {
       id: Number(newQuestId),
