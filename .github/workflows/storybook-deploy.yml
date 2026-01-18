@@ -17,7 +17,6 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: github.repository == 'Central-MakeUs/status-front'
 
     steps:
       - name: Checkout
