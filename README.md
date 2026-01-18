@@ -25,15 +25,6 @@
 
 성장 과정은 모두 기록으로 남습니다. 꾸준한 실천은 칭호와 보너스 경험치로 보상됩니다.
 
-## 기술 스택
-
-- React
-- Expo
-  - [저장소 링크](https://github.com/Central-MakeUs/status-app)
-- TanStack Query
-- Zustand
-- SCSS
-
 ## 시작하기
 
 ### 패키지 설치
