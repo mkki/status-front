@@ -2,6 +2,7 @@
 [![App Store](https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white)](https://apps.apple.com/us/app/%EC%83%81%ED%83%9C%EC%B0%BD/id6747613959)
 [![Google Play](https://img.shields.io/badge/Google_Play-3DDC84?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.status.app.status)
 [![Web](https://img.shields.io/badge/Web-FF6B6B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://app.statoverflow.cloud)
+[![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)](https://mkki.github.io/status-front)
 
 ![hero](https://github.com/user-attachments/assets/b88ff2e0-cfb7-4981-8add-dae5ad54e9cb)
 
@@ -25,15 +26,22 @@
 
 성장 과정은 모두 기록으로 남습니다. 꾸준한 실천은 칭호와 보너스 경험치로 보상됩니다.
 
-## 시작하기
+## 빠른 시작
 
-### 패키지 설치
+### 필수 요구사항
+
+- node >= 22+
+- pnpm (권장 패키지 매니저)
+
+### 설치 및 실행
+
+#### 패키지 설치
 
 ```bash
 pnpm install
 ```
 
-### 개발 서버 실행
+#### 개발 서버 실행
 
 ```bash
 pnpm dev
