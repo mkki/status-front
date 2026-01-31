@@ -1,7 +1,7 @@
 # 상태창 - 육각형 인간으로 레벨업
 [![App Store](https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white)](https://apps.apple.com/us/app/%EC%83%81%ED%83%9C%EC%B0%BD/id6747613959)
 [![Google Play](https://img.shields.io/badge/Google_Play-3DDC84?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.status.app.status)
-[![Web](https://img.shields.io/badge/Web-FF6B6B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://app.statoverflow.cloud)
+[![Web](https://img.shields.io/badge/Web-FF6B6B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://status-front-qdg2aai92-mkkis-projects.vercel.app)
 [![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)](https://mkki.github.io/status-front)
 
 ![hero](https://github.com/user-attachments/assets/b88ff2e0-cfb7-4981-8add-dae5ad54e9cb)
