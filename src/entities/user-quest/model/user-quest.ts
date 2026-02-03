@@ -16,7 +16,13 @@ export type UsersSubQuest = UsersSubQuestResponseDTO;
 
 export type SubQuestLog = SubQuestLogDTO;
 
-export type CompletedQuest = SubQuestLogsResponseDTO;
+export type CompletedQuest = Omit<SubQuestLogsResponseDTO, 'log'> & {
+  log: UserSubQuestLog;
+};
+
+export type UserSubQuestLog = SubQuestLogDTO & {
+  achievementImages?: string[];
+};
 
 export type UsersCompletedHistory = QuestHistoryByDateDTO;
 

@@ -256,17 +256,17 @@ const QuestDetailPage = () => {
       </main>
       <QuestReportBottomSheet
         isBottomSheetOpen={isBottomSheetOpen}
+        selectedSubQuest={selectedSubQuest}
+        selectedDifficulty={selectedDifficulty!}
+        memo={memo}
         onClose={() => {
           setIsBottomSheetOpen(false);
           setMemo('');
           setSelectedDifficulty(null);
         }}
-        selectedSubQuest={selectedSubQuest}
-        selectedDifficulty={selectedDifficulty!}
         onChangeDifficulty={setSelectedDifficulty}
-        memo={memo}
         onChangeMemo={handleChangeMemo}
-        onQuestReport={handleQuestReport}
+        onReportQuest={handleQuestReport}
       />
       <SubQuestRewardDialog
         isOpen={rewardStep === REWARD_STEP.SUB_QUEST}
