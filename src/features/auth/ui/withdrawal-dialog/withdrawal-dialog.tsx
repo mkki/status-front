@@ -35,20 +35,20 @@ export const WithdrawalDialog = ({
     <Dialog>
       {isGuestUser ? (
         <>
-          <Dialog.Title>회원을 탈퇴할까요?</Dialog.Title>
-          <Dialog.Description>
-            계정의 모든 기록이 삭제되며
-            <br />
-            동일 계정으로 회원가입을 해도 복구되지 않습니다.
-          </Dialog.Description>
-        </>
-      ) : (
-        <>
           <Dialog.Title>게스트 모드를 종료할까요?</Dialog.Title>
           <Dialog.Description>
             저장된 모든 데이터가 삭제되며
             <br />
             삭제된 데이터는 복구할 수 없습니다.
+          </Dialog.Description>
+        </>
+      ) : (
+        <>
+          <Dialog.Title>회원을 탈퇴할까요?</Dialog.Title>
+          <Dialog.Description>
+            계정의 모든 기록이 삭제되며
+            <br />
+            동일 계정으로 회원가입을 해도 복구되지 않습니다.
           </Dialog.Description>
         </>
       )}
