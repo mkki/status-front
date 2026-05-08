@@ -103,7 +103,7 @@ import IconStar from '@/shared/assets/icons/star.svg?react';
 
 기능 스펙은 `docs/ms1/`과 `docs/ms2/`에 마일스톤별로 정리되어 있습니다. ms1에는 인증, 상태창, 퀘스트 설정, 퀘스트 검증, 통합 레벨, 히스토리, 마이페이지 메뉴, 상태 시스템 스펙이 들어 있고 ms2에는 퀘스트 설정 시스템 개정이 있습니다. 새 기능을 만들거나 기존 흐름을 바꿀 때 먼저 해당 스펙을 읽고 작업합니다.
 
-위키는 형제 디렉터리 `/Users/user/Documents/personal/status-front.wiki/`에 별도 클론으로 관리됩니다.
+위키는 [GitHub Wiki](https://github.com/mkki/status-front/wiki)에서 관리됩니다.
 
 - [위키 동기화 정책](docs/wiki/wiki-sync-policy.md) 기능 개발이나 리팩토링이 끝나면 위키 관련 문서를 점검하고 업데이트를 제안하는 절차. 자동 커밋은 하지 않고 사용자 승인 후 반영합니다.
 - [위키 개선 백로그](docs/wiki/wiki-improvements.md) 사용자 입력 또는 판단이 필요한 위키 개선 아이디어.
