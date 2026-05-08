@@ -1,6 +1,6 @@
 # 위키 동기화 정책
 
-`status-front` 프로젝트에서 기능 추가나 리팩토링이 끝나면 `/Users/user/Documents/personal/status-front.wiki/`의 관련 문서를 점검하고 업데이트 제안을 한 번 띄웁니다.
+`status-front`, `status-server`, `status-app` 세 레포에서 기능 추가나 리팩토링이 끝나면 GitHub 위키의 관련 문서를 점검하고 업데이트 제안을 한 번 띄웁니다.
 
 ## Why
 
@@ -8,15 +8,31 @@
 
 ## When
 
-`src/` 변경이 완료된 직후. 단순 버그 픽스, 주석 변경, 스타일 토큰 조정처럼 위키 본문 결론에 영향이 없는 변경은 생략합니다.
+각 레포에서 변경이 완료된 직후. 단순 버그 픽스, 주석 변경, 스타일 토큰 조정처럼 위키 본문 결론에 영향이 없는 변경은 생략합니다.
 
 ## 점검 대상 매핑
+
+### status-front (`src/` 변경 시)
 
 - 인증/세션: `HTTP-Client-설계.md`, `인증-전략-검토.md`, `시크릿-모드-쿠키-인증.md`
 - WebView/네이티브: `WebView-연동.md`, `이미지-업로드.md`, `Architecture-&-Structure.md` (MESSAGE_TYPES 변경 시)
 - 데이터/상태: `전역-상태-관리.md`, `다단계-폼.md`, `서버-로컬-데이터-동기화.md`
 - UI/스타일: `컴포넌트-패턴.md`, `Modal-외부-클릭.md`, `SCSS-Module-스타일-제어.md`
 - 인프라/패턴: `레이아웃과-라우팅.md`, `글로벌-에러-핸들링.md`, `React-Query-운영.md`
+
+### status-server (`src/main/` 변경 시)
+
+- 인증/JWT: `인증-전략-검토.md`, `시크릿-모드-쿠키-인증.md` (토큰 발급·검증·블랙리스트 흐름 변경 시)
+- 이미지 업로드/스토리지: `이미지-업로드.md` (엔드포인트·저장 정책·OCI 연동 변경 시)
+- API 설계: `HTTP-Client-설계.md` (응답 포맷·에러 코드 변경 시)
+- 퀘스트 도메인: `Architecture-&-Structure.md` (엔티티 구조·상태 전이 변경 시)
+
+### status-app (`src/`, `features/` 변경 시)
+
+- WebView 브릿지: `WebView-연동.md` (MESSAGE_TYPES·postMessage 흐름 변경 시)
+- 이미지 업로드: `이미지-업로드.md` (선택·리사이즈·업로드 흐름 변경 시)
+- 인증: `인증-전략-검토.md` (OAuth 리다이렉트·딥링크 처리 변경 시)
+- 아키텍처: `Architecture-&-Structure.md` (앱 전체 구조 변경 시)
 
 ## 점검 항목
 
