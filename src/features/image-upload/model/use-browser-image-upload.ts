@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { api } from '@/shared/api/api-client';
+import type { ApiResponse } from '@/shared/api/api-client';
 import {
   type AchievementPhoto,
   MAX_USER_SUB_QUEST_IMAGE_COUNT,
@@ -76,15 +78,12 @@ export const useBrowserImageUpload = (
       formData.append('files', blob, `image_${i}.jpg`)
     );
 
-    const response = await fetch(
-      `${import.meta.env.VITE_API_URL || ''}/upload/images`,
-      { method: 'POST', body: formData, credentials: 'include' }
+    const res = await api.post<ApiResponse<{ urls: string[] }>>(
+      '/upload/images',
+      undefined,
+      { body: formData }
     );
-
-    if (!response.ok) throw new Error('이미지 업로드에 실패했습니다.');
-
-    const json = (await response.json()) as { data?: { urls?: string[] } };
-    return json.data?.urls ?? [];
+    return res.data?.urls ?? [];
   };
 
   return { handleFileChange, uploadBrowserImages };

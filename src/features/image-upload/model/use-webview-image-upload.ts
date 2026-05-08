@@ -1,4 +1,6 @@
 import { isWebView, MESSAGE_TYPES } from '@/shared/config/web-view';
+import { api } from '@/shared/api/api-client';
+import type { ApiResponse } from '@/shared/api/api-client';
 import { useCallback, useEffect } from 'react';
 import { type AchievementPhoto } from '../config/image-upload';
 
@@ -6,13 +8,9 @@ type UploadResult = { id: string; url: string } | { id: string; error: string };
 
 const getAuthToken = async (): Promise<string | undefined> => {
   try {
-    const res = await fetch(
-      `${import.meta.env.VITE_API_URL || ''}/auth/token`,
-      { credentials: 'include' }
-    );
-    if (!res.ok) return undefined;
-    const json = (await res.json()) as { data?: { accessToken?: string } };
-    return json.data?.accessToken ?? undefined;
+    const res =
+      await api.get<ApiResponse<{ accessToken: string }>>('/auth/token');
+    return res.data?.accessToken ?? undefined;
   } catch {
     return undefined;
   }

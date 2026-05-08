@@ -19,7 +19,9 @@ const request = async <T = unknown>(
   options: RequestOptions = {}
 ): Promise<T> => {
   const headers: HeadersInit = {
-    'Content-Type': 'application/json',
+    ...(!(options.body instanceof FormData) && {
+      'Content-Type': 'application/json',
+    }),
     ...options.headers,
   };
 
