@@ -113,6 +113,11 @@ export const QuestReportBottomSheet = ({
               ))}
             </ul>
           )}
+          {/*
+            WebView에서 네이티브 이미지 피커를 열기 위해 label onClick 사용.
+            label 클릭이 input을 트리거하기 전에 preventDefault로 파일 피커를 막는다.
+            input에 onClick을 달면 일부 모바일에서 preventDefault가 동작하지 않아 label에 유지.
+          */}
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
           <label className={cx('button-add-photo')} onClick={handleLabelClick}>
             <input
