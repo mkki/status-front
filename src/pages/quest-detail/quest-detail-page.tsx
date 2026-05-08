@@ -95,7 +95,7 @@ const QuestDetailPage = () => {
     setSelectedSubQuest(null);
   };
 
-  const handleQuestReport = () => {
+  const handleQuestReport = (imageUrls: string[] = []) => {
     if (!selectedSubQuest || !selectedDifficulty) return;
 
     if (isEdit) {
@@ -104,6 +104,7 @@ const QuestDetailPage = () => {
         id: editingLogId,
         difficulty: selectedDifficulty!,
         memo,
+        imageUrls,
       };
       patchUserSubQuestLog.mutate(payload, {
         onSuccess: () => {
@@ -122,6 +123,7 @@ const QuestDetailPage = () => {
         id: selectedSubQuest.subQuestInfo.id,
         difficulty: selectedDifficulty!,
         memo,
+        imageUrls,
       };
 
       postUserSubQuestLog.mutate(payload, {
@@ -256,17 +258,17 @@ const QuestDetailPage = () => {
       </main>
       <QuestReportBottomSheet
         isBottomSheetOpen={isBottomSheetOpen}
+        selectedSubQuest={selectedSubQuest}
+        selectedDifficulty={selectedDifficulty!}
+        memo={memo}
         onClose={() => {
           setIsBottomSheetOpen(false);
           setMemo('');
           setSelectedDifficulty(null);
         }}
-        selectedSubQuest={selectedSubQuest}
-        selectedDifficulty={selectedDifficulty!}
         onChangeDifficulty={setSelectedDifficulty}
-        memo={memo}
         onChangeMemo={handleChangeMemo}
-        onQuestReport={handleQuestReport}
+        onReportQuest={handleQuestReport}
       />
       <SubQuestRewardDialog
         isOpen={rewardStep === REWARD_STEP.SUB_QUEST}

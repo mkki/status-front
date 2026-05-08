@@ -22,6 +22,7 @@ export interface SubQuestLogDTO {
   id: number;
   difficulty: SubQuestDifficulty;
   memo: string;
+  imageUrls?: string[];
 }
 
 export interface QuestHistoryByDateDTO {

@@ -1,11 +1,20 @@
+import { useEffect } from 'react';
 import { BottomSheet } from '@/shared/ui/bottom-sheet/bottom-sheet';
 import { Button } from '@/shared/ui/button/button';
 import { Textarea } from '@/shared/ui/textarea/textarea';
-import classNames from 'classnames/bind';
-import styles from './quest-report-bottom-sheet.module.scss';
 import type { SubQuestDifficulty } from '@/shared/config/quest-template';
 import { SUB_QUEST_DIFFICULTY } from '@/shared/config/quest-template';
 import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
+import {
+  type AchievementPhoto,
+  MAX_USER_SUB_QUEST_IMAGE_COUNT,
+} from '@/features/image-upload/config/image-upload';
+
+import IconAddPhoto from '@/assets/icons/icon-add-photo-alternate.svg?react';
+
+import styles from './quest-report-bottom-sheet.module.scss';
+import classNames from 'classnames/bind';
+import { useUploadImage } from '@/features/image-upload/model/use-image-upload';
 
 const cx = classNames.bind(styles);
 
@@ -14,22 +23,41 @@ interface QuestReportBottomSheetProps {
   onClose: () => void;
   selectedSubQuest: UsersSubQuest | null;
   selectedDifficulty: SubQuestDifficulty | null;
+  achievementPhotos?: AchievementPhoto[];
+  memo?: string;
   onChangeDifficulty: (difficulty: SubQuestDifficulty) => void;
-  memo: string;
   onChangeMemo: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onQuestReport: () => void;
+  onReportQuest: (imageUrls: string[]) => void;
 }
-
 export const QuestReportBottomSheet = ({
   isBottomSheetOpen,
-  onClose,
   selectedSubQuest,
   selectedDifficulty,
-  onChangeDifficulty,
+  achievementPhotos = [],
   memo,
+  onClose,
+  onChangeDifficulty,
   onChangeMemo,
-  onQuestReport,
+  onReportQuest,
 }: QuestReportBottomSheetProps) => {
+  const {
+    uploadedImages,
+    setUploadedImages,
+    handleLabelClick,
+    handleFileChange,
+    uploadImages,
+  } = useUploadImage();
+  const photos = [...achievementPhotos, ...uploadedImages];
+
+  useEffect(() => {
+    if (!isBottomSheetOpen) {
+      setUploadedImages([]);
+    }
+  }, [isBottomSheetOpen, setUploadedImages]);
+
+  useEffect(() => {
+    setUploadedImages([]);
+  }, [selectedSubQuest?.subQuestInfo.id, setUploadedImages]);
   const disabled = !selectedSubQuest || !selectedDifficulty;
 
   return (
@@ -68,6 +96,35 @@ export const QuestReportBottomSheet = ({
             </button>
           ))}
         </div>
+        <BottomSheet.SubTitle>
+          이미지 추가(최대 {MAX_USER_SUB_QUEST_IMAGE_COUNT}장)
+        </BottomSheet.SubTitle>
+        <div className={cx('quest-report-photos')}>
+          {photos.length > 0 && (
+            <ul className={cx('photo-list')}>
+              {photos?.map((photo) => (
+                <li key={photo.id} className={cx('photo-item')}>
+                  <img
+                    className={cx('photo-image')}
+                    src={photo.thumbnailDataURI}
+                    alt="이미지"
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
+          <label className={cx('button-add-photo')} onClick={handleLabelClick}>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              className={cx('sr-only')}
+              onChange={handleFileChange}
+            />
+            <IconAddPhoto className={cx('icon-add-photo')} aria-hidden="true" />
+          </label>
+        </div>
         <Textarea
           label="메모 최대(300자)"
           value={memo}
@@ -78,7 +135,16 @@ export const QuestReportBottomSheet = ({
         />
       </BottomSheet.Content>
       <BottomSheet.Footer>
-        <Button variant="secondary" disabled={disabled} onClick={onQuestReport}>
+        <Button
+          variant="secondary"
+          disabled={disabled}
+          onClick={async () => {
+            const imageUrls = await uploadImages(
+              String(selectedSubQuest?.subQuestInfo.id ?? '')
+            );
+            onReportQuest(imageUrls);
+          }}
+        >
           이상, 퀘스트 완료.
         </Button>
       </BottomSheet.Footer>

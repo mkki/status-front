@@ -6,7 +6,7 @@ import { PROVIDER_TYPE } from '@/features/auth/config/constants';
 import IconLogout from '@/assets/icons/icon-logout.svg?react';
 import IconWarning from '@/assets/icons/icon-warning.svg?react';
 import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
-import { MESSAGE_TYPES } from '@/shared/config/web-view';
+import { isWebView, MESSAGE_TYPES } from '@/shared/config/web-view';
 import { PAGE_PATHS } from '@/shared/config/paths';
 
 import classNames from 'classnames/bind';
@@ -44,7 +44,6 @@ export const UserProfileActionList = ({
 
     const { href } = event.currentTarget;
 
-    const isWebView = window.ReactNativeWebView !== undefined;
     if (isWebView) {
       window.ReactNativeWebView.postMessage(
         JSON.stringify({
