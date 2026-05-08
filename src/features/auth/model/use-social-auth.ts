@@ -5,7 +5,7 @@ import {
   PROVIDER_TYPE,
   URL_SCHEME,
 } from '@/features/auth/config/constants';
-import { MESSAGE_TYPES } from '@/shared/config/web-view';
+import { isWebView, MESSAGE_TYPES } from '@/shared/config/web-view';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   useAuthStore,
@@ -63,8 +63,6 @@ export const useSocialAuth = () => {
       }))
     );
 
-  const isWebView = window.ReactNativeWebView !== undefined;
-
   const signInWithOAuth = useCallback(
     async (provider: SocialProvider, socialConnection: boolean = false) => {
       const state = JSON.stringify({
@@ -91,7 +89,7 @@ export const useSocialAuth = () => {
         window.location.href = url;
       }
     },
-    [isWebView, redirect, setTempSocialConnection]
+    [redirect, setTempSocialConnection]
   );
 
   const handleOAuthCallback = useCallback(
@@ -217,7 +215,7 @@ export const useSocialAuth = () => {
         handleWebViewMessage as EventListener
       );
     };
-  }, [isWebView, handleWebViewMessage, handleOAuthCallback]);
+  }, [handleWebViewMessage, handleOAuthCallback]);
 
   return { signInWithOAuth, isSocialLoginLoading };
 };

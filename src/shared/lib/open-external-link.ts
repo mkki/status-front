@@ -1,8 +1,6 @@
-import { MESSAGE_TYPES } from '../config/web-view';
+import { isWebView, MESSAGE_TYPES } from '../config/web-view';
 
 export const openExternalLink = (url: string): void => {
-  const isWebView = window.ReactNativeWebView !== undefined;
-
   if (isWebView) {
     window.ReactNativeWebView.postMessage(
       JSON.stringify({

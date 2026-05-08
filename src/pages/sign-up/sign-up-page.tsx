@@ -15,7 +15,7 @@ import { SIGN_UP_STEP_INFO } from '@/features/auth/config/constants';
 import { PAGE_PATHS } from '@/shared/config/paths';
 import { renderWithLineBreaks } from '@/shared/lib/format';
 import { TERM_URL } from '@/shared/config/terms';
-import { MESSAGE_TYPES } from '@/shared/config/web-view';
+import { isWebView, MESSAGE_TYPES } from '@/shared/config/web-view';
 
 import type { SignUpForm, SignUpStep } from '@/features/auth/model/types';
 import type { BasicUsers } from '@/entities/user/model/user';
@@ -120,7 +120,6 @@ const SignUpPage = () => {
 
     const { href } = event.currentTarget;
 
-    const isWebView = window.ReactNativeWebView !== undefined;
     if (isWebView) {
       window.ReactNativeWebView.postMessage(
         JSON.stringify({
